@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AssetType extends AbstractType
 {
@@ -16,6 +17,7 @@ class AssetType extends AbstractType
         $builder
             ->add('image', FileType::class, [
                 'multiple' => true,
+                'by_reference' => false,
                 'attr' => [
                     'accept' => 'image/*',
                     'multiple' => 'multiple'
@@ -29,7 +31,7 @@ class AssetType extends AbstractType
                 ]
             ])
         ;
-        $builder->get('asset')->addModelTransformer(new CallBackTransformer(
+        $builder->get('image')->addModelTransformer(new CallBackTransformer(
             function ($asset) {
                 return null;
             },
