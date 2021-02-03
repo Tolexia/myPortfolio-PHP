@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FileUploader;
 
 /**
  * @Route("/project")
@@ -73,6 +74,32 @@ class ProjectController extends AbstractController
         }
 
         return $this->render('project/edit.html.twig', [
+            'project' => $project,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/editAssets", name="project_edit_assets", methods={"GET","POST"})
+     */
+    public function editAssets(Request $request, Project $project, FileUploader $fileUploader): Response
+    {
+        $form = $this->createForm(AssetType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $asset = $form->get('image')->getData();
+            if ($asset) {
+                $assetName = $fileUploader->upload($asset);
+               
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($project);
+                $entityManager->flush();
+            }
+            return $this->redirectToRoute('project_edit', ['id' => $project->getId()]);
+        }
+
+        return $this->render('project/editAssets.html.twig', [
             'project' => $project,
             'form' => $form->createView(),
         ]);
