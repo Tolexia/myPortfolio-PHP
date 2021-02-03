@@ -44,9 +44,20 @@ class Project
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Asset::class, mappedBy="project")
+     */
+    private $assets;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->usedTechnology = new ArrayCollection();
+        $this->assets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,6 +133,48 @@ class Project
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Asset[]
+     */
+    public function getAssets(): Collection
+    {
+        return $this->assets;
+    }
+
+    public function addAsset(Asset $asset): self
+    {
+        if (!$this->assets->contains($asset)) {
+            $this->assets[] = $asset;
+            $asset->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAsset(Asset $asset): self
+    {
+        if ($this->assets->removeElement($asset)) {
+            // set the owning side to null (unless already changed)
+            if ($asset->getProject() === $this) {
+                $asset->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

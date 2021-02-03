@@ -21,6 +21,27 @@
     --star: #1ff1c2 e;
     --message-btn: #fff;
 }
+
+.dark:root {
+    --app-container: #1f1d2b;
+    --main-color: #fff;
+    --secondary-color: rgba(255, 255, 255, .8);
+    --projects-section: #252836;
+    --link-color: rgba(255, 255, 255, .8);
+    --link-color-hover: rgba(195, 207, 244, 0.1);
+    --link-color-active-bg: rgba(195, 207, 244, 0.2);
+    --button-bg: #2f3142;
+    --search-area-bg: #2f3142;
+    --message-box-hover: #303446;
+    --message-box-border: rgba(255, 255, 255, .1);
+    --star: #ffd92c;
+    --light-font: rgba(255, 255, 255, .8);
+    --more-list-bg: #2f3142;
+    --more-list-bg-hover: rgba(195, 207, 244, 0.1);
+    --more-list-shadow: rgba(195, 207, 244, 0.1);
+    --message-btn: rgba(195, 207, 244, 0.1);
+}
+
 html, body {
     width: 100%;
     height: 100vh;
@@ -43,7 +64,7 @@ body {
 .app-content {
     display: flex;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
     padding: 16px 24px 24px 0;
 }
 .app-header {
@@ -173,6 +194,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1;
+    background-color: var(--projects-section);
     padding: 32px 24px 0 24px;
 }
 
@@ -389,7 +411,7 @@ body {
 
 .content {
     opacity: 0;
-    animation:  1.5s linear 3s forwards appear;
+    animation:  2s linear 3s forwards appear;
   }
 
   .project-description {
@@ -406,9 +428,35 @@ body {
 h2, p {
 	color: var(--main-color);
 }
+.project-boxes.jsListView .box-progress-wrapper {
+    order: 3;
+    flex: 1;
+}
+.box-progress-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+.more-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
+.more-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
 
  @media screen and (max-width: 980px) {
+    .projects-section {
+        overflow: auto;
+    }
 	 .project-boxes.jsGridView .project-box-wrapper {
 		 width: 50%;
 	}
@@ -438,7 +486,7 @@ h2, p {
 		 overflow: auto;
 	}
 	 .project-boxes {
-		 overflow-y: visible;
+		 overflow-y: scroll;
 	}
 	 .app-sidebar, .app-icon {
 		 display: none;

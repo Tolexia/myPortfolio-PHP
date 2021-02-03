@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.name }}{% endblock %}
+{% block previous %}
+<div class="more-wrapper">
+        <button class="project-btn-more">
+            <a href="{{ path('project_index') }}">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm3 5.753l-6.44 5.247 6.44 5.263-.678.737-7.322-6 7.335-6 .665.753z"/></svg>
+            </a>
+        </button>
+</div>
+{% endblock %}
+{% block pageTitle %}{{ project.name }}{% endblock %}
+{% block dates %}{{project.fromDate|date('d/m/Y')}} - {{project.toDate|date('d/m/Y')}}{% endblock %}
+{% block subheader %}
+<p class = "project-description">
+    <i>{{ project.description|nl2br }}</i>
+</p>
+{% endblock %}
+{% block body %}
+ <h2>Previews</h2>
+    <div class="project-boxes jsGridView"> 
+        {% for asset in project.assets %}
+            <a data-fancybox="gallery" href = "{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}" title ="{{ asset.image }}" />
+                <img class = "preview" src = "{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}"  alt="{{ asset.image }}"/>
+            </a>
+        {% endfor %}
+    </div>
+    <div class = "more-container">
+        <div class = "more-item">
+            <h2>Used Technologies</h2>
+            {% for technology in project.usedTechnology %}
+                {{technology.technology}}{% if not loop.last %} / {% endif %}
+            {% endfor %}
+        </div>
+        <div class = "more-item">
+            <h3>Options</h3>
+            <a href="{{ path('project_edit', {'id': project.id}) }}" >
+                <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 21.398c5.504.456 3.533-5.392 8.626-5.445l2.206 1.841c.549 6.645-7.579 8.127-10.832 3.604zm16.878-8.538c1.713-2.687 7.016-11.698 7.016-11.698.423-.747-.515-1.528-1.17-.976 0 0-7.887 6.857-10.213 9.03-1.838 1.719-1.846 2.504-2.441 5.336l2.016 1.681c2.67-1.098 3.439-1.248 4.792-3.373z"/></svg>
+            </a>
+        </div>
+    </div>
+{% endblock %}
