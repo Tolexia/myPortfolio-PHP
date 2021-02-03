@@ -3,14 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}My Portfolio{% endblock %}</title>
+        <title>My Portfolio • {% block title %}{% endblock %}</title>
         {% block stylesheets %}
              {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
         <div class="app-container">
             <div class="app-header">
                 <div class="app-header-left">
@@ -26,7 +27,7 @@
             </div>
             <div class="app-content">
                 <div class="app-sidebar">
-                    <a href="" class="app-sidebar-link active">
+                    <a href="{{path('default')}}" class="app-sidebar-link active">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                         <polyline points="9 22 9 12 15 12 15 22" /></svg>
@@ -39,11 +40,9 @@
                             <p class="time">{% block dates %}{% endblock %}</p>
                         </div>
                         <div class="projects-section-line">
-                            <p class = "project-description"><i>{% block description %}{% endblock %}</i></p>
+                            {% block subheader %}{% endblock %}
                         </div>
-                        <div class="project-boxes jsGridView">
-                            {% block boxContent %}{% endblock %}
-                        </div>
+                        {% block body %}{% endblock %}
                     </div>
                 </div>
             </div>
