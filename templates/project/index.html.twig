@@ -66,9 +66,9 @@
                     </p>
                 </div>
                 <div class="box-progress-wrapper">
-                    {% for asset in project.assets|slice(0, 2) %}
-                        <a data-fancybox="gallery" href = "" />
-                            <img src = "assets/Safe Night/Home.png" class = "preview"/>
+                    {% for asset in project.assets|slice(0, 3) %}
+                       <a data-fancybox="gallery" href = "{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}" title ="{{ asset.image }}" />
+                            <img class = "preview" src = "{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}"  alt="{{ asset.image }}"/>
                         </a>
                     {% endfor %}
                 </div>

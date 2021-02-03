@@ -428,7 +428,10 @@ body {
 h2, p {
 	color: var(--main-color);
 }
-
+.box-progress-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
 .more-container {
     display: flex;
     flex-wrap: wrap;
