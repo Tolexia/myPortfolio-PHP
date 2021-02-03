@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\FileUploader;
 
 /**
  * @Route("/project")
@@ -79,10 +78,10 @@ class ProjectController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/editAssets", name="project_edit_assets", methods={"GET","POST"})
-     */
-    public function editAssets(Request $request, Project $project, FileUploader $fileUploader): Response
+    ///**
+     //* @Route("/{id}/editAssets", name="project_edit_assets", methods={"GET","POST"})
+    // */
+    /*public function editAssets(Request $request, Project $project, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(AssetType::class, $project);
         $form->handleRequest($request);
@@ -90,8 +89,7 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $asset = $form->get('image')->getData();
             if ($asset) {
-                $assetName = $fileUploader->upload($asset);
-               
+                    
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($project);
                 $entityManager->flush();
@@ -103,7 +101,7 @@ class ProjectController extends AbstractController
             'project' => $project,
             'form' => $form->createView(),
         ]);
-    }
+    }*/
 
     /**
      * @Route("/{id}", name="project_delete", methods={"DELETE"})

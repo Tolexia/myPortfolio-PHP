@@ -6,44 +6,78 @@
 {% block dates %}2020 - 2021{% endblock %} 
 {% block subheader %}
 <div class="projects-status">
-                <div class="item-status">
-                  <span class="status-number">2</span>
-                  <span class="status-type">Client Projects</span>
-                </div>
-                <div class="item-status">
-                  <span class="status-number">2</span>
-                  <span class="status-type">Hackathons</span>
-                </div>
-                <div class="item-status">
-                  <span class="status-number">5</span>
-                  <span class="status-type">Total Projects</span>
-                </div>
-              </div>
-              <div class="view-actions">
-                <button class="view-btn list-view" title="List View">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
-                    <line x1="8" y1="6" x2="21" y2="6" />
-                    <line x1="8" y1="12" x2="21" y2="12" />
-                    <line x1="8" y1="18" x2="21" y2="18" />
-                    <line x1="3" y1="6" x2="3.01" y2="6" />
-                    <line x1="3" y1="12" x2="3.01" y2="12" />
-                    <line x1="3" y1="18" x2="3.01" y2="18" /></svg>
-                </button>
-                <button class="view-btn grid-view active" title="Grid View">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
-                    <rect x="3" y="3" width="7" height="7" />
-                    <rect x="14" y="3" width="7" height="7" />
-                    <rect x="14" y="14" width="7" height="7" />
-                    <rect x="3" y="14" width="7" height="7" /></svg>
-                </button>
-              </div>
+    <div class="item-status">
+        <span class="status-number">2</span>
+        <span class="status-type">Client Projects</span>
+    </div>
+    <div class="item-status">
+        <span class="status-number">2</span>
+        <span class="status-type">Hackathons</span>
+    </div>
+    <div class="item-status">
+        <span class="status-number">5</span>
+        <span class="status-type">Total Projects</span>
+    </div>
+</div>
+<div class="view-actions">
+    <button class="view-btn list-view" title="List View">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+            <line x1="3" y1="12" x2="3.01" y2="12" />
+            <line x1="3" y1="18" x2="3.01" y2="18" />
+        </svg>
+    </button>
+    <button class="view-btn grid-view active" title="Grid View">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+        </svg>
+    </button>
+</div>
 {% endblock %}
 {% block body %}
 <div class="project-boxes jsGridView">
-    <a href="{{ path('project_new') }}">
-        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
-        Add new
-    </a>
+    {% for project in projects %}
+        <div class="project-box-wrapper">
+            <div class="project-box" style="background-color: #fee4cb;">
+                <div class="project-box-header">
+                    <span>{{project.fromDate|date('d/m/Y')}} <br>-> {{project.toDate|date('d/m/Y')}}</span>
+                    <div class="more-wrapper">
+                        <button class="project-btn-more">
+                            <a href ="{{ path('project_show', {'id': project.id}) }}">
+                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm-3 5.753l6.44 5.247-6.44 5.263.678.737 7.322-6-7.335-6-.665.753z"/>
+                                </svg>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="project-box-content-header">
+                    <p class="box-content-header">{{project.name}}</p>
+                    <p class="box-content-subheader">
+                        {% for technology in project.usedTechnology %}
+                            {{technology.technology}}{% if not loop.last %} / {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="box-progress-wrapper">
+                    {% for asset in project.assets|slice(0, 2) %}
+                        <a data-fancybox="gallery" href = "" />
+                            <img src = "assets/Safe Night/Home.png" class = "preview"/>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
+<a href="{{ path('project_new') }}">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
+</a>
 {% endblock %}
 
