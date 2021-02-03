@@ -428,6 +428,10 @@ body {
 h2, p {
 	color: var(--main-color);
 }
+.project-boxes.jsListView .box-progress-wrapper {
+    order: 3;
+    flex: 1;
+}
 .box-progress-wrapper {
     display: flex;
     justify-content: space-around;
