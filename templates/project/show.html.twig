@@ -33,7 +33,7 @@
                 {{technology.technology}}{% if not loop.last %} / {% endif %}
             {% endfor %}
         </div>
-        {% if app.user.id == 1 %}
+        {% if app.user %}
         <div class = "more-item">
             <h3>Options</h3>
             <a href="{{ path('project_edit', {'id': project.id}) }}" >
