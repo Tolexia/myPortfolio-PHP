@@ -1,16 +1,57 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {# Si la route est "annonces_edit on affiche les images #}
-	{% if app.request.attributes.get('_route') == 'project_edit' %}
-        <h2>Previews</h2>
-        {% for asset in project.assets %}
-            <div>
-                <img src="{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}" alt="" width="150">
-
-                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
-                <a href="{{ path('project_delete_asset', {'project': project.id,'id': asset.id})}}" data-delete data-token="{{ csrf_token('delete' ~ asset.id )}}">Supprimer</a>
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    <div class = "form-container">
+        <div class = "form-col">
+            <div class = "form-row">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
             </div>
-        {% endfor %}
-    {% endif %}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+            <div class = "form-row">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description) }}
+            </div>
+            <div class = "form-row">
+                {{ form_label(form.fromDate) }}
+                {{ form_widget(form.fromDate) }}
+            </div>
+            <div class = "form-row">
+                {{ form_label(form.toDate) }}
+                {{ form_widget(form.toDate) }}
+            </div>
+        </div>
+        <div  class = "form-col">
+            <div class = "form-row">
+                {{ form_label(form.usedTechnology) }}
+                {{ form_widget(form.usedTechnology) }}
+            </div>
+            <div class = "form-row">
+                {{ form_label(form.category) }}
+                {{ form_widget(form.category) }}
+            </div>
+            <div class = "form-row">
+                {{ form_label(form.assets) }}
+                {{ form_widget(form.assets) }}
+            </div>
+            {# Si la route est "annonces_edit on affiche les images #}
+            {% if app.request.attributes.get('_route') == 'project_edit' %}
+                <h3>Previews</h3>
+                {% for asset in project.assets %}
+                    <div class = "form-row">
+                        <img src="{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}" alt="" width="150">
+                        {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                        <a href="{{ path('project_delete_asset', {'project': project.id,'id': asset.id})}}" data-delete data-token="{{ csrf_token('delete' ~ asset.id )}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class = "btn-div">
+        <button class="btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.25 8.891l-1.421-1.409-6.105 6.218-3.078-2.937-1.396 1.436 4.5 4.319 7.5-7.627z"/></svg>
+        </button>
+    </div>
 {{ form_end(form) }}
