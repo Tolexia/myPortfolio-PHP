@@ -21,8 +21,8 @@ class ProjectType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Project name'])
             ->add('description', TextareaType::class, ['label' => 'Description'])
-            ->add('fromDate', DateType::class, ['label' => 'Start Date'])
-            ->add('toDate', DateType::class, ['label' => 'End Date'])
+            ->add('fromDate', DateType::class, ['label' => 'Start Date', 'widget' => 'single_text'])
+            ->add('toDate', DateType::class, ['label' => 'End Date', 'widget' => 'single_text'])
             ->add('usedTechnology', EntityType::class, [
                 'class' => UsedTechnology::class,
                 'choice_label' => 'technology',

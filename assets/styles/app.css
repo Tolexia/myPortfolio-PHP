@@ -18,8 +18,7 @@
     --more-list-shadow: rgba(209, 209, 209, 0.4);
     --button-bg: #1f1c24;
     --search-area-bg: #fff;
-    --star: #1ff1c2 e;
-    --message-btn: #fff;
+   
 }
 
 .dark:root {
@@ -39,7 +38,6 @@
     --more-list-bg: #2f3142;
     --more-list-bg-hover: rgba(195, 207, 244, 0.1);
     --more-list-shadow: rgba(195, 207, 244, 0.1);
-    --message-btn: rgba(195, 207, 244, 0.1);
 }
 
 html, body {
@@ -183,6 +181,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5vh;
 }
 .projects-section-header {
     display: flex;
@@ -440,6 +439,7 @@ h2, p {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-top: 10vh;
 }
 
 .more-item {
@@ -456,24 +456,64 @@ h3 {
     margin:30px 10px 30px 10px;
     display:flex;
     flex-direction: column;
+    text-align: center;
+}
+.form-container {
+    display:flex; 
+    flex-direction: row;
+    flex-wrap:wrap; 
+    justify-content:space-around;
 }
 
-.form-container {
+.form-col, .form-row, form div {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.form-item label {
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.btn-div {
+    display:flex;
+    flex-direction: column;
+}
+
+form div label {
     text-align: center;
 }
-.form-item input {
+form div input {
     max-width: 200px;
 }
- @media screen and (max-width: 980px) {
+#project_usedTechnology {
+    text-align:center;
+}
+
+.btn {
+    border:hidden;
+    background-color: transparent;
+}
+
+textarea {
+    min-width: 300px;
+    height: 300px;
+}
+@media screen and (max-width:1095px) {
     .projects-section {
         overflow: auto;
-    }
+   }
+   .form-container {
+       flex-direction: column;
+   }
+
+   #validateButton {
+    justify-content: center;
+}
+}
+ @media screen and (max-width: 980px) {
+
 	 .project-boxes.jsGridView .project-box-wrapper {
 		 width: 50%;
 	}
@@ -486,7 +526,11 @@ h3 {
 	}
 	 .item-status {
 		 margin-right: 0;
-	}
+    }
+    
+    .more-container {
+        margin-top: 5vh;
+    }
 }
 
  @media screen and (max-width: 720px) {
