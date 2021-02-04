@@ -1,4 +1,16 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+    {# Si la route est "annonces_edit on affiche les images #}
+	{% if app.request.attributes.get('_route') == 'project_edit' %}
+        <h2>Previews</h2>
+        {% for asset in project.assets %}
+            <div>
+                <img src="{{ asset('/images/' ~ project.name ~ '/' ~ asset.image) }}" alt="" width="150">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                <a href="{{ path('project_delete_asset', {'project': project.id,'id': asset.id})}}" data-delete data-token="{{ csrf_token('delete' ~ asset.id )}}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
