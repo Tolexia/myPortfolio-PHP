@@ -88,6 +88,20 @@ class ProjectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $assets = $form->get('assets')->getData();
+            if ($assets) {
+                foreach ($assets as $asset) {
+                    $fichier = md5(uniqid()).'.'.$asset->guessExtension();
+                    $asset->move(
+                        $this->getParameter('images_directory'). '/' . $project->getName(),
+                        $fichier);
+                        $img = new Asset();
+                        $img->setImage($fichier);
+                        $img->setProject($project);
+                        $this->getDoctrine()->getManager()->persist($img);
+                        $project->addAsset($img);
+                }
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('project_show', ['id' => $project->getId()]);
