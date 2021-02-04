@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,10 +19,11 @@ class ProjectController extends AbstractController
     /**
      * @Route("/", name="project_index", methods={"GET"})
      */
-    public function index(ProjectRepository $projectRepository): Response
+    public function index(ProjectRepository $projectRepository, CategoryRepository $categoryRepository): Response
     {
         return $this->render('project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 

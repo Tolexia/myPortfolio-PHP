@@ -6,20 +6,25 @@
 {% block dates %}2020 - 2021{% endblock %} 
 {% block subheader %}
 <div class="projects-status">
+{% for category in categories %}
+    {% if category.category != 'Personal project' %}
     <div class="item-status">
-        <span class="status-number">2</span>
-        <span class="status-type">Client Projects</span>
+        <span class="status-number">{{category.projects|length}}</span>
+        <span class="status-type">{{category.category}}</span>
     </div>
+    {% endif %}
+{% endfor %}
     <div class="item-status">
-        <span class="status-number">2</span>
-        <span class="status-type">Hackathons</span>
-    </div>
-    <div class="item-status">
-        <span class="status-number">5</span>
+        <span class="status-number">{{projects|length}}</span>
         <span class="status-type">Total Projects</span>
     </div>
 </div>
 <div class="view-actions">
+    {% if app.user.id == 1 %}
+        <a href="{{ path('project_new') }}" style = "display:flex;align-items:center;">
+            <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
+        </a>
+    {% endif %}
     <button class="view-btn list-view" title="List View">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
             <line x1="8" y1="6" x2="21" y2="6" />
@@ -44,7 +49,7 @@
 <div class="project-boxes jsGridView">
     {% for project in projects %}
         <div class="project-box-wrapper">
-            <div class="project-box" style="background-color: #fee4cb;">
+            <div class="project-box" style="background-color: {% if project.category.category == 'Client project' %} #fee4cb {% elseif project.category.category == 'Hackathon'%} #c8f7dc {% elseif project.category.category == 'Student project'%} #ffd3e2 {% else %} #e9e7fd {% endif %};">
                 <div class="project-box-header">
                     <span>{{project.fromDate|date('d/m/Y')}} <br>-> {{project.toDate|date('d/m/Y')}}</span>
                     <div class="more-wrapper">
@@ -76,10 +81,5 @@
         </div>
     {% endfor %}
 </div>
-{% if app.user.id == 1 %}
-    <a href="{{ path('project_new') }}">
-        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 0c6.347 0 11.5 5.153 11.5 11.5s-5.153 11.5-11.5 11.5-11.5-5.153-11.5-11.5 5.153-11.5 11.5-11.5zm0 1c5.795 0 10.5 4.705 10.5 10.5s-4.705 10.5-10.5 10.5-10.5-4.705-10.5-10.5 4.705-10.5 10.5-10.5zm.5 10h6v1h-6v6h-1v-6h-6v-1h6v-6h1v6z"/></svg>
-    </a>
-{% endif %}
 {% endblock %}
 
