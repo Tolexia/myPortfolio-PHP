@@ -1,3 +1,7 @@
+*********************************************************************************************
+/!\ PROJECT CURRENTLY UPDATING TO ADD DATA, PROJECT AVAILABLE TO CLONE ON MARCH 11TH 2021 /!\
+*********************************************************************************************
+
 Hey, welcome to My Portfolio Project :)
 
 If you want to clone it and see by yourself how it looks like, there are few steps :
