@@ -1,5 +1,5 @@
 *******************************************************************************************************
-/!\ PROJECT CURRENTLY UPDATING TO ADD DATA, PROJECT AVAILABLE TO CLONE ON MARCH 11TH 2021 THANK YOU /!\
+/!\ PROJECT CURRENTLY UPDATING TO ADD DATA, PROJECT AVAILABLE TO CLONE SOON THANK YOU /!\
 *******************************************************************************************************
 
 Hey, welcome to My Portfolio Project :)
