@@ -8,7 +8,7 @@ In a terminal
 * git clone the project
 * Move into the newly created folder
 * Run composer install & yarn install
-* 
+
 In the root folder of the project
 *********************************
 * Copy the .env file to .env.local and open it
