@@ -15,12 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var listView = document.querySelector('.list-view');
     var gridView = document.querySelector('.grid-view');
     var projectsList = document.querySelector('.project-boxes');
+    const content = document.querySelector('.content');
     
     listView.addEventListener('click', function () {
       gridView.classList.remove('active');
       listView.classList.add('active');
       projectsList.classList.remove('jsGridView');
       projectsList.classList.add('jsListView');
+      content.classList.remove('jsGridView');
+      content.classList.add('jsListView');
     });
     
     gridView.addEventListener('click', function () {
@@ -28,5 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
       listView.classList.remove('active');
       projectsList.classList.remove('jsListView');
       projectsList.classList.add('jsGridView');
+      content.classList.remove('jsGridView');
+      content.classList.add('jsListView');
     });
 });

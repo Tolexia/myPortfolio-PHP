@@ -410,9 +410,18 @@ body {
 .content {
     opacity: 0;
     animation:  2s linear 3s forwards appear;
-  }
+}
 
-  .project-description {
+.content.jsListView {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.content.jsGridView {
+    overflow: hidden;
+}
+
+.project-description {
 	text-align:center;
 	width:100%;
 }
